@@ -1,0 +1,22 @@
+<html>
+
+<body style="background-color:paleturquoise;">
+
+<h1 style="color: teal; padding-top: 20px; text-align: center; font-size: 40px;"> TODO APP </h1>
+
+<form action="{% url 'add' %}" method="POST" style="text-align: center;">
+    {% csrf_token %}
+    <input type="text" placeholder="Enter a Todo" name="todo" style="width: 250px; height: 25px; font-size: 15px;">
+    <input type="submit" value="Add" style="background-color:yellowgreen; width: 65px; height: 25px; font-size: 15px; color: #fff; text-transform: uppercase; border-radius: 2px;">
+</form>
+
+{% for items in data %}
+<form action="/delete/{{ items.id }}/" method="POST" style="text-align: center; font-size: 15px;">
+    {% csrf_token %}
+    <h2>{{ items.content }}</h2>
+    <input type="submit" value="Delete" style="background-color:red; width: 73px; height: 25px; font-size: 15px; color: #fff; text-transform: uppercase; border-radius: 2px;">
+</form>
+{% endfor %}
+
+</body>
+</html>
